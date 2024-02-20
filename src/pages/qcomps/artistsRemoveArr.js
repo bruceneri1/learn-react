@@ -11,6 +11,13 @@ export default function List() {
     initialArtists
   );
 
+  function handleDeleteClick(id) {
+    setArtists(artists.filter((artist)=>
+    {
+      return artist.id != id
+    }));
+  }
+
   return (
     <>
       <h1>Inspiring sculptors:</h1>
@@ -19,7 +26,8 @@ export default function List() {
           <li key={artist.id}>
             {artist.name}{' '}
             <button onClick={() => {
-              artists.splice(artist.id, 1)
+              handleDeleteClick(artist.id);
+              //artists.splice(artist.id, 1)
             }}>
               Delete
             </button>
