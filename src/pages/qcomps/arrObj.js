@@ -8,29 +8,23 @@ const initialList = [
 ];
 
 export default function BucketList() {
-  const [myList, setMyList] = useState(initialList);
-  const [yourList, setYourList] = useState(
-    initialList
-  );
+  const [myList, setMyList] = useState([...initialList]);
+  const [yourList, setYourList] = useState([...initialList]);
 
   function handleToggleMyList(artworkId, nextSeen) {
-    const tmpList = myList.map(e => {
-        if (e.id === artworkId) {
-            e.seen = nextSeen
-        }
-        return e
-    });
-    setMyList(tmpList);
+    const updatedMyList = myList.map(item => ({
+      ...item,
+      seen: item.id === artworkId ? nextSeen : item.seen,
+    }));
+    setMyList(updatedMyList);
   }
 
   function handleToggleYourList(artworkId, nextSeen) {
-    const tmpList = yourList.map(e => {
-        if (e.id === artworkId) {
-            e.seen = nextSeen
-        }
-        return e
-    });
-    setYourList(tmpList);
+    const updatedYourList = yourList.map(item => ({
+      ...item,
+      seen: item.id === artworkId ? nextSeen : item.seen,
+    }));
+    setYourList(updatedYourList);
   }
 
   return (
